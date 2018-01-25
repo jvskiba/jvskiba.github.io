@@ -2,151 +2,195 @@
 
 <html>
 	<head>
-		<title>Taco r cool</title>
-		<link rel = "StyleSheet" type = "text/css" href = "StyleSheet.css" />
+		<style>
+			h1 {
+				text-align: center;
+			}
+
+			p {
+				text-align: center;
+			}
+			#container {
+    
+			}
+			#Bottom {
+				position: absolute;
+				bottom: 0;
+			}
+			#Top {
+				position: absolute;
+				Top: 0;
+			}
+		</style>
 	</head>
-<body bgcolor="ffffff" onload="start()"  style="text-align:center;">
+	<div id="container">
+		<div style="width: 50%; float:left">	
+			<div style="width: 50%; float: right;">
+				<h1>Dr.Math</h1>
+				<p id="InfoBox"></p>
+				<p id="ErrorBox"></p>
+			</div>
+			<div style="width: 50%; float: left;">
+				<div id="Top">
+					<p>Buy</p>
+					<button onclick="ButtonPressed(0)" onmouseover="SetInfo(1,0)" onmouseout="SetInfo(0,0)" type="button">Click for money</button><br>
+					<button onclick="ButtonPressed(3)" onmouseover="SetInfo(1,3)" onmouseout="SetInfo(0,3)" type="button">Motivate Teachers</button><br>
+					<button onclick="ButtonPressed(1)" onmouseover="SetInfo(1,1)" onmouseout="SetInfo(0,1)" type="button">Buy Teacher</button><br>
+					<button onclick="ButtonPressed(2)" onmouseover="SetInfo(1,2)" onmouseout="SetInfo(0,2)" type="button">Buy Students</button><br>
+					<button onclick="ButtonPressed(4)" onmouseover="SetInfo(1,4)" onmouseout="SetInfo(0,4)" type="button">Buy a teacher a PHD</button><br>
+					<button onclick="ButtonPressed(5)" onmouseover="SetInfo(1,5)" onmouseout="SetInfo(0,5)" type="button">Buy a Professer</button><br>
+					<button onclick="ButtonPressed(6)" onmouseover="SetInfo(1,6)" onmouseout="SetInfo(0,6)" type="button">Buy a Custodian</button><br>
+					<button onclick="ButtonPressed(7)" onmouseover="SetInfo(1,7)" onmouseout="SetInfo(0,7)" type="button">Buy a Physisist</button><br>
+				</div>
+				<div id="Bottom">
+					<p>Upgrades</p>
+				</div>
+			</div>
+		</div>
 
-<div class="container">
-
-<header>
-   <h1 style="color:green;">This is the taco website</h1>
-</header>
-  
-<nav>
-		<font color="#000000" id="textColor">
-		<button id="ButtonColor" onclick="nextColor()" type="button">change background color</button>
-		<br>
-		<form id="frm2">
-		Seizure speed:<br>
-			<input type="text" maxlength="4" size="2" name="speed" value="100"><br>
-		</form>
-		<button id="Button2Color" onclick="seizureClicked(NCWait)" type="button">Seizure</button>
-		<br>
-		<br>
-		<form id="frm3" action="MAILTO:jakeskiba8@gmail.com&Subject=website" method="post" enctype="text/plain">
-			Write your quote here:<br>
-			<input type="text" maxlength="12" size="12" name="quote"><br>
-			Your name first and last:<br>
-			<input type="text" maxlength="12" size="12" name="name"><br>
-			<input type="submit" value="submit">
-			</form>
-		<button onclick="processQuote()" type="button">hi</button><br>
-		<button onclick="redirect()" type="button">press me</button>
-	</body>
-  <ul>
-    <button onclick="setURL('Home.html')" type="button">Home</button>
-	<br>
-	<button onclick="setURL('Quotes.html')" type="button">Quotes</button>
-	<br>
-	<button onclick="setURL('GamesPage.html')" type="button">Games</button>
-	<br>
-	<button onclick="setURL('EncriptingScript.html')" type="button">Encripting</button>
-	<br>
-	<button onclick="setURL('Counter.html')" type="button">Counter</button>
-	<br>
-	<button onclick="setURL('Timer.html')" type="button">Timer</button>
-	<br>
-	<button onclick="setURL('Fibonacci.html')" type="button">Fibonacci sequence</button>
-	<br>
-	<button onclick="setURL('Game.html')" type="button">Dr.Math</button>
-	<br>
-	<button onclick="setURL('RndMultCoiceQuess.html')" type="button">Random test answer</button>
-  </ul>
-</nav>
-
-	<article>
-		<iframe id="iframe1" src="Home.html" height="500" width="1100" tyle="border:none;"></iframe>
-  </article>
-
-<footer>Copyright &copy; Jake Skiba</footer>
-
-</div>
-
-	</style>
+		<div style="width: 50%; float:right">
+			<p>Math</p>
+			<p id="0"></p>
+			<p>Money</p>
+			<p id="1"></p>
+			<p>Math teachers</p>
+			<p id="2"></p>
+			<p id="2.5"></p>
+			<p>Students</p>
+			<p id="3"></p>
+			<p>Professers</p>
+			<p id="4"></p>
+			<p>Custodian</p>
+			<p id="5"></p>
+			<p>Physicists</p>
+			<p id="6"></p>
+		</div>
+		<body style="text-align:center;" onload="start()">
+		</body>
+	</div>
 	<script>
-		var bgcolorvar = ["#ff0000","#ff4000","#ff8000","#ffbf00","#ffff00","#bfff00","#80ff00","#40ff00","#00ff00","#00ff40","#00ff80","#00ffbf","#00ffff","#00bfff","#0080ff","#0040ff","#0000ff","#4000ff","#8000ff","#bf00ff","#ff00ff","#ff00bf","#ff0080","#ff0040"];
-		var BGColorPoint = 0;
-		var BColorPointButton = 1;
-		var bgcolorlength = bgcolorvar.length;
-		var autoSwitchT = 0;
-		var NCWait;
-		var writevalue;
-		var answer1 = "";
-		var answer2 = "";
-		var speed = "";
-	
+		//         cost to produce^   ^How much they produce
+		//               [0, 50, .5, .5]
+		//	  amount owned^   ^price to buy
+		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 1000, 0, 100, 100],[0, 1000, 25, 200]];
+		var ButtonInfoArray = [
+		"Click to earn $0.5 instantly.",	
+		"Click to buy a teacher for $25. Each teacher produces 1 math every second.",
+		"Click to buy a student for 50 math. They produce $0.5 every second for a cost of .5 math.",
+		"Click to add .25 math per teacher owned.",
+		"Click to give a teacher a PHD for $70 and it increases their math prduction by 3 times.", 
+		"Click to buy a professor, they cost 1000. But they cost $10 per second and produce 50 math a second.",
+		"Click to buy a custodian, they cost $1,000 and find $100 1 out of 100 times.",
+		"Click to buy"]
+		var InfoToDisplay = "";
+		var ErrorToDisplay = "";
+		var FrameRate = 10;
+		var USInt;
+		var UInt;
+		var TimeInt;
+		var TimerVal = 0;
+		var TimeOpen = 0;
+		
 		function start() {
-			//window.alert("welcome to jake's taco website")
+			var Time = 1000/FrameRate;
+			UInt = setInterval(Update, 1000);
+			USInt = setInterval(UpdateScreen, Time);
+			TimeInt = setInterval(TimeOpen, 100);
+			TimerDisplay(4, "Wellcome, I sudgest you hover over the buttons to know what they do.")
+		}
+		 
+		function TimeOpenFunc() {
+			TimeOpen = TimeOpen + 0.1
 		}
 		
-			var button = document.createElement("button");
-			button.innerHTML = "Do Something";
-
-			// 2. Append somewhere
-			var body = document.getElementsByTagName("body")[0];
-			body.appendChild(button);
-
-			// 3. Add event handler
-			button.addEventListener ("click", function() {
-			alert("did something");
-			});
-			
-		function nextColor() {
-			if (BColorPointButton == bgcolorlength){
-			BColorPointButton = 0;
+		function Update() {
+			PreCheck(GameStat[2][2], 0, GameStat[2][3], 0, GameStat[2][0], 1, GameStat[4][2], GameStat[4][0])
+			PreCheck(GameStat[3][2], 0, GameStat[3][3], 1, GameStat[3][0], 0, 1, 0)
+			PreCheck(GameStat[5][2], 1, GameStat[5][3], 0, GameStat[5][0], 0, 1, 0)
+			PreCheck(GameStat[7][2], 1, GameStat[7][3], 0, GameStat[7][0], 0, 1, 0)
+			//custodian()
+		}
+		
+		function custodian(){
+			for (var i = 0; i < GameStat[6][0]; i++) {
+				var RndInterger = getRndInteger(0, GameStat[6][4]);
+				console.log(RndInterger)
+				if (RndInterger = 0) {
+					GameStat[1][0] = GameStat[6][3];
+				}
 			}
-			console.log(BColorPointButton - 1)
-			BColorPointButton = BColorPointButton + 1
-			ButtonColor.style.background = (bgcolorvar[BColorPointButton])
-			Button2Color.style.background = (bgcolorvar[BColorPointButton])
-			BGColorPoint = BGColorPoint + 1;
-			document.body.style.backgroundColor = (bgcolorvar[BGColorPoint - 1]);
-			//document.getElementById("textColor").style.color = (bgcolorvar[BGColorPoint - 1 + (bgcolorlength/2)]);
-			//text color change^
-			//console.log(bgcolorvar[BGColorPoint - 1]);
-					
-			if (BGColorPoint == bgcolorlength) { 
-				BGColorPoint = 0;
+			
+		}
+		
+		function UpdateScreen() {
+			document.getElementById("0").innerHTML = GameStat[0][0];
+			document.getElementById("1").innerHTML = GameStat[1][0];
+			document.getElementById("2").innerHTML = GameStat[2][0];
+			document.getElementById("2.5").innerHTML = GameStat[4][0];
+			document.getElementById("3").innerHTML = GameStat[3][0];
+			document.getElementById("4").innerHTML = GameStat[5][0];
+			document.getElementById("5").innerHTML = GameStat[6][0];
+			document.getElementById("6").innerHTML = GameStat[7][0];
+			document.getElementById("InfoBox").innerHTML = InfoToDisplay;
+			document.getElementById("ErrorBox").innerHTML = ErrorToDisplay;
+		}
+		
+		function PreCheck(Price, fromWhat, addNum, toWhat, neededItem, UseCount, multiplyer, NeededItem2) {
+			if (neededItem > 0) {
+				for (var i = 0; i < neededItem; i++) {
+					if (UseCount == 0) {
+						CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)
+					} else {
+						if (GameStat[fromWhat][0] >= Price) {	
+							if (i < NeededItem2) {CheckAndAdd(Price, fromWhat, addNum, toWhat, multiplyer)}
+							else {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)}
+						}
+					}	
+				}
 			}
 		}
-			
-			function seizureClicked() {
-				var x = document.getElementById("frm2");
-				speed = x.elements[0].value;
-				
-				if (autoSwitchT == 0) {
-					autoSwitchT = 1;
-					NCWait = setInterval(nextColor, speed);
-				}
-				else {
-					autoSwitchT = 0
-					clearInterval(NCWait) 
-				}
+		
+		function CheckAndAdd(Price, fromWhat, addNum, toWhat, multiplyer) {
+			if (GameStat[fromWhat][0] >= Price) {
+				GameStat[fromWhat][0] = GameStat[fromWhat][0] - Price;
+				GameStat[toWhat][0] = GameStat[toWhat][0] + (addNum * multiplyer);
+			} else {
+				TimerDisplay(2, "You don't have enuough money to buy this")
 			}
-			
-			function redirect() {
-				window.location.href = "https://www.youtube.com/watch?v=xCjuFMxYKyw"
-				//we are number one earrape
-			}
-			
-			function processQuote() {
-				var x = document.getElementById("frm3");
-				quote = x.elements[0].value;
-				name = x.elements[1].value;
-				writeTextFile("C:/Users/2000006546/Desktop/website20stuff/taco20website/quotes.txt", quote, name)
-			}
-			
-			function writeTextFile(filepath, output, output2) {
-				var txtFile = (filepath);
-				console.log(filepath)
-				console.log(output)
-				console.log(output2)
-
-			}
-			
-			function setURL(url){
-				document.getElementById('iframe1').src = url;
-			}
+		}
+		
+		function SinglePreCheck(Price, fromWhat, addNum, toWhat, neededItem) {
+			if (neededItem > 0) {
+				CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)
+			} else {TimerDisplay(2, "You don't have the needed item to get this.")}
+		}
+		
+		function getRndInteger(min, max) {
+			return Math.floor(Math.random() * (max - min) ) + min;
+		}
+		
+		function ButtonPressed(Func) {
+			if (Func == 0) {GameStat[1][0] = GameStat[1][0] + 0.5;}
+			if (Func == 1) {CheckAndAdd(GameStat[2][1], 1, 1, 2, 1)}
+			if (Func == 2) {SinglePreCheck(GameStat[3][1], 0, 1, 3, 1)}
+			if (Func == 3) {PreCheck(0, 0, .25, 0, GameStat[2][0], 0, 0, 0)}
+			if (Func == 4) {if (GameStat[2][0] > GameStat[4][0]) {SinglePreCheck(GameStat[4][1], 1, 1, 4, GameStat[2][0])}}
+			if (Func == 5) {SinglePreCheck(GameStat[5][1], 1, 1, 5, GameStat[1][0])}
+			if (Func == 6) {SinglePreCheck(GameStat[5][1], 1, 1, 5, GameStat[1][0])}
+			if (Func == 7) {SinglePreCheck(GameStat[7][1], 1, 1, 7, GameStat[5][0])}
+		}
+		
+		function SetInfo(OnOff, Func) {
+			if (OnOff == 1) {InfoToDisplay = ButtonInfoArray[Func];}
+			if (OnOff == 0) {InfoToDisplay = "";}
+		}
+		
+		function TimerDisplay(Length, Message) {
+			ErrorToDisplay = Message;
+			Length = Length * 1000;
+			setTimeout(function(){ErrorToDisplay = "";}, Length);
+		}
+		
+		
 	</script>
 </html>

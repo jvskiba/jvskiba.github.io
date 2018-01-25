@@ -84,10 +84,10 @@
 		"Click to buy a teacher for $25. Each teacher produces 1 math every second.",
 		"Click to buy a student for 50 math. They produce $0.5 every second for a cost of .5 math.",
 		"Click to add .25 math per teacher owned.",
-		"Click to give a teacher a PHD for $70 and it increases their math prduction by 3 times.", 
-		"Click to buy a professor, they cost 1000. But they cost $10 per second and produce 50 math a second.",
+		"Click to give a teacher a PHD for $70 and it increases their math prduction by 3 times. You can give one phd per teacher.", 
+		"Click to buy a professor, they cost 1000. But they cost $10 per second and produce 50 math a second.You need a teacher to do this",
 		"Click to buy a custodian, they cost $1,000 and find $100 1 out of 100 times.",
-		"Click to buy"]
+		"Click to buy a physisist which produces 200 math for a cost of $25. You need a professor to do this."]
 		var InfoToDisplay = "";
 		var ErrorToDisplay = "";
 		var FrameRate = 10;
@@ -103,7 +103,7 @@
 			UInt = setInterval(Update, 1000);
 			USInt = setInterval(UpdateScreen, Time);
 			TimeInt = setInterval(TimeOpen, 100);
-			TimerDisplay(4, "Wellcome, I sudgest you hover over the buttons to know what they do.")
+			TimerDisplay(4, "Wellcome, I suggest you hover over the buttons to know what they do.")
 		}
 		 
 		function TimeOpenFunc() {

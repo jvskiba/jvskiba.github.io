@@ -147,11 +147,11 @@
 			if (neededItem > 0) {
 				for (var i = 0; i < neededItem; i++) {
 					if (UseCount == 0) {
-						CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)
+						CheckAndAdd(Price, fromWhat, addNum, toWhat, 1, 1)
 					} else {
 						if (GameStat[fromWhat][0] >= Price) {	
-							if (i < NeededItem2) {CheckAndAdd(Price, fromWhat, addNum, toWhat, multiplyer)}
-							else {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)}
+							if (i < NeededItem2) {CheckAndAdd(Price, fromWhat, addNum, toWhat, multiplyer, 1)}
+							else {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1, 1)}
 						}
 					}	
 				}
@@ -162,7 +162,7 @@
 			if (neededItem > 0) {
 				if (UseBuyMulti == true) {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1, BuyMultiplyer)}
 				else {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1, 1)}
-			} else {TimerDisplay(1.5, "You don't have the needed item to get this.")}
+			} else {TimerDisplay(2, "You don't have the needed item to get this.")}
 		}
 		
 		function CheckAndAdd(Price, fromWhat, addNum, toWhat, AddMulti, BuyMulti) {
@@ -170,7 +170,7 @@
 				GameStat[fromWhat][0] = GameStat[fromWhat][0] - (Price * BuyMulti);
 				GameStat[toWhat][0] = GameStat[toWhat][0] + (addNum * AddMulti * BuyMulti);
 			} else {
-				TimerDisplay(1.5, "You don't have enuough money to buy this")
+				TimerDisplay(2, "You don't have enuough money to buy this")
 			}
 		}
 		

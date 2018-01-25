@@ -72,7 +72,7 @@
 		//         cost to produce^   ^How much they produce
 		//               [0, 50, .5, .5]
 		//	  amount owned^   ^price to buy
-		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 10, 0, 100, 100],[0, 1000, 25, 200]];
+		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 1000, 0, 100, 100],[0, 1000, 25, 200]];
 		var ButtonInfoArray = [
 		"Click to earn $0.5 instantly.",	
 		"Click to buy a teacher for $25. Each teacher produces 1 math every second.",

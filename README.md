@@ -33,6 +33,12 @@
 			<div style="width: 50%; float: left;">
 				<div id="Top">
 					<p>Buy</p>
+					<div>
+						<button onclick="ButtonMultiplyer(1)" type="button">Buy X1</button>
+						<button onclick="ButtonMultiplyer(10)" type="button">Buy X10</button>
+						<button onclick="ButtonMultiplyer(100)" type="button">Buy X100</button>
+						<p id="MultiplyerPar"></p>
+					</div>
 					<button onclick="ButtonPressed(0)" onmouseover="SetInfo(1,0)" onmouseout="SetInfo(0,0)" type="button">Click for money</button><br>
 					<button onclick="ButtonPressed(3)" onmouseover="SetInfo(1,3)" onmouseout="SetInfo(0,3)" type="button">Motivate Teachers</button><br>
 					<button onclick="ButtonPressed(1)" onmouseover="SetInfo(1,1)" onmouseout="SetInfo(0,1)" type="button">Buy Teacher</button><br>
@@ -72,7 +78,7 @@
 		//         cost to produce^   ^How much they produce
 		//               [0, 50, .5, .5]
 		//	  amount owned^   ^price to buy
-		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 1000, 0, 100, 100],[0, 1000, 25, 200]];
+		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 10, 0, 100, 500],[0, 1000, 25, 200]];
 		var ButtonInfoArray = [
 		"Click to earn $0.5 instantly.",	
 		"Click to buy a teacher for $25. Each teacher produces 1 math every second.",
@@ -90,6 +96,7 @@
 		var TimeInt;
 		var TimerVal = 0;
 		var TimeOpen = 0;
+		var BuyMultiplyer = 1;
 		
 		function start() {
 			var Time = 1000/FrameRate;
@@ -133,6 +140,7 @@
 			document.getElementById("6").innerHTML = GameStat[7][0];
 			document.getElementById("InfoBox").innerHTML = InfoToDisplay;
 			document.getElementById("ErrorBox").innerHTML = ErrorToDisplay;
+			document.getElementById("MultiplyerPar").innerHTML = BuyMultiplyer;
 		}
 		
 		function PreCheck(Price, fromWhat, addNum, toWhat, neededItem, UseCount, multiplyer, NeededItem2) {
@@ -150,19 +158,20 @@
 			}
 		}
 		
-		function CheckAndAdd(Price, fromWhat, addNum, toWhat, multiplyer) {
-			if (GameStat[fromWhat][0] >= Price) {
-				GameStat[fromWhat][0] = GameStat[fromWhat][0] - Price;
-				GameStat[toWhat][0] = GameStat[toWhat][0] + (addNum * multiplyer);
+		function SinglePreCheck(Price, fromWhat, addNum, toWhat, neededItem, UseBuyMulti) {
+			if (neededItem > 0) {
+				if (UseBuyMulti == true) {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1, BuyMultiplyer)}
+				else {CheckAndAdd(Price, fromWhat, addNum, toWhat, 1, 1)}
+			} else {TimerDisplay(1.5, "You don't have the needed item to get this.")}
+		}
+		
+		function CheckAndAdd(Price, fromWhat, addNum, toWhat, AddMulti, BuyMulti) {
+			if (GameStat[fromWhat][0] >= (Price * BuyMulti)) {
+				GameStat[fromWhat][0] = GameStat[fromWhat][0] - (Price * BuyMulti);
+				GameStat[toWhat][0] = GameStat[toWhat][0] + (addNum * AddMulti * BuyMulti);
 			} else {
 				TimerDisplay(1.5, "You don't have enuough money to buy this")
 			}
-		}
-		
-		function SinglePreCheck(Price, fromWhat, addNum, toWhat, neededItem) {
-			if (neededItem > 0) {
-				CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)
-			} else {TimerDisplay(1.5, "You don't have the needed item to get this.")}
 		}
 		
 		function getRndInteger(min, max) {
@@ -171,13 +180,13 @@
 		
 		function ButtonPressed(Func) {
 			if (Func == 0) {GameStat[1][0] = GameStat[1][0] + 0.5;}
-			if (Func == 1) {CheckAndAdd(GameStat[2][1], 1, 1, 2, 1)}
-			if (Func == 2) {SinglePreCheck(GameStat[3][1], 0, 1, 3, 1)}
+			if (Func == 1) {SinglePreCheck(GameStat[2][1], 1, 1, 2, 1, true)}
+			if (Func == 2) {SinglePreCheck(GameStat[3][1], 0, 1, 3, 1, true)}
 			if (Func == 3) {PreCheck(0, 0, .25, 0, GameStat[2][0], 0, 0, 0)}
 			if (Func == 4) {if (GameStat[2][0] > GameStat[4][0]) {SinglePreCheck(GameStat[4][1], 1, 1, 4, GameStat[2][0])}}
-			if (Func == 5) {SinglePreCheck(GameStat[5][1], 1, 1, 5, GameStat[1][0])}
-			if (Func == 6) {SinglePreCheck(GameStat[6][1], 1, 1, 6, GameStat[1][0])}
-			if (Func == 7) {SinglePreCheck(GameStat[7][1], 1, 1, 7, GameStat[5][0])}
+			if (Func == 5) {SinglePreCheck(GameStat[5][1], 1, 1, 5, GameStat[1][0], true)}
+			if (Func == 6) {SinglePreCheck(GameStat[6][1], 1, 1, 6, GameStat[1][0], true)}
+			if (Func == 7) {SinglePreCheck(GameStat[7][1], 1, 1, 7, GameStat[5][0], true)}
 		}
 		
 		function SetInfo(OnOff, Func) {
@@ -191,6 +200,9 @@
 			setTimeout(function(){ErrorToDisplay = "";}, Length);
 		}
 		
+		function ButtonMultiplyer(Multiplyer) {
+			BuyMultiplyer = Multiplyer;
+		}
 		
 	</script>
 </html>

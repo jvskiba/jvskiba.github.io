@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html>
 	<head>
 		<style>
@@ -70,7 +72,7 @@
 		//         cost to produce^   ^How much they produce
 		//               [0, 50, .5, .5]
 		//	  amount owned^   ^price to buy
-		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 1000, 0, 100, 100],[0, 1000, 25, 200]];
+		var GameStat = [[0, 0],[0, 0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50], [0, 10, 0, 100, 100],[0, 1000, 25, 200]];
 		var ButtonInfoArray = [
 		"Click to earn $0.5 instantly.",	
 		"Click to buy a teacher for $25. Each teacher produces 1 math every second.",
@@ -106,15 +108,15 @@
 			PreCheck(GameStat[3][2], 0, GameStat[3][3], 1, GameStat[3][0], 0, 1, 0)
 			PreCheck(GameStat[5][2], 1, GameStat[5][3], 0, GameStat[5][0], 0, 1, 0)
 			PreCheck(GameStat[7][2], 1, GameStat[7][3], 0, GameStat[7][0], 0, 1, 0)
-			//custodian()
+			custodian()
 		}
 		
 		function custodian(){
 			for (var i = 0; i < GameStat[6][0]; i++) {
 				var RndInterger = getRndInteger(0, GameStat[6][4]);
 				console.log(RndInterger)
-				if (RndInterger = 0) {
-					GameStat[1][0] = GameStat[6][3];
+				if (RndInterger == 0) {
+					GameStat[1][0] = GameStat[1][0] + GameStat[6][3];
 				}
 			}
 			
@@ -153,14 +155,14 @@
 				GameStat[fromWhat][0] = GameStat[fromWhat][0] - Price;
 				GameStat[toWhat][0] = GameStat[toWhat][0] + (addNum * multiplyer);
 			} else {
-				TimerDisplay(2, "You don't have enuough money to buy this")
+				TimerDisplay(1.5, "You don't have enuough money to buy this")
 			}
 		}
 		
 		function SinglePreCheck(Price, fromWhat, addNum, toWhat, neededItem) {
 			if (neededItem > 0) {
 				CheckAndAdd(Price, fromWhat, addNum, toWhat, 1)
-			} else {TimerDisplay(2, "You don't have the needed item to get this.")}
+			} else {TimerDisplay(1.5, "You don't have the needed item to get this.")}
 		}
 		
 		function getRndInteger(min, max) {
@@ -174,7 +176,7 @@
 			if (Func == 3) {PreCheck(0, 0, .25, 0, GameStat[2][0], 0, 0, 0)}
 			if (Func == 4) {if (GameStat[2][0] > GameStat[4][0]) {SinglePreCheck(GameStat[4][1], 1, 1, 4, GameStat[2][0])}}
 			if (Func == 5) {SinglePreCheck(GameStat[5][1], 1, 1, 5, GameStat[1][0])}
-			if (Func == 6) {SinglePreCheck(GameStat[5][1], 1, 1, 5, GameStat[1][0])}
+			if (Func == 6) {SinglePreCheck(GameStat[6][1], 1, 1, 6, GameStat[1][0])}
 			if (Func == 7) {SinglePreCheck(GameStat[7][1], 1, 1, 7, GameStat[5][0])}
 		}
 		

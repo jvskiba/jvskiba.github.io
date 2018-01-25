@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Taco r cool</title>
+		<link rel = "StyleSheet" type = "text/css" href = "StyleSheet.css" />
+	</head>
+<body bgcolor="ffffff" onload="start()"  style="text-align:center;">
+
+<div class="container">
+
+<header>
+   <h1 style="color:green;">This is the taco website</h1>
+</header>
+  
+<nav>
+		<font color="#000000" id="textColor">
+		<button id="ButtonColor" onclick="nextColor()" type="button">change background color</button>
+		<br>
+		<form id="frm2">
+		Seizure speed:<br>
+			<input type="text" maxlength="4" size="2" name="speed" value="100"><br>
+		</form>
+		<button id="Button2Color" onclick="seizureClicked(NCWait)" type="button">Seizure</button>
+		<br>
+		<br>
+		<form id="frm3" action="MAILTO:jakeskiba8@gmail.com&Subject=website" method="post" enctype="text/plain">
+			Write your quote here:<br>
+			<input type="text" maxlength="12" size="12" name="quote"><br>
+			Your name first and last:<br>
+			<input type="text" maxlength="12" size="12" name="name"><br>
+			<input type="submit" value="submit">
+			</form>
+		<button onclick="processQuote()" type="button">hi</button><br>
+		<button onclick="redirect()" type="button">press me</button>
+	</body>
+  <ul>
+    <button onclick="setURL('Home.html')" type="button">Home</button>
+	<br>
+	<button onclick="setURL('Quotes.html')" type="button">Quotes</button>
+	<br>
+	<button onclick="setURL('GamesPage.html')" type="button">Games</button>
+	<br>
+	<button onclick="setURL('EncriptingScript.html')" type="button">Encripting</button>
+	<br>
+	<button onclick="setURL('Counter.html')" type="button">Counter</button>
+	<br>
+	<button onclick="setURL('Timer.html')" type="button">Timer</button>
+	<br>
+	<button onclick="setURL('Fibonacci.html')" type="button">Fibonacci sequence</button>
+	<br>
+	<button onclick="setURL('Game.html')" type="button">Dr.Math</button>
+	<br>
+	<button onclick="setURL('RndMultCoiceQuess.html')" type="button">Random test answer</button>
+  </ul>
+</nav>
+
+	<article>
+		<iframe id="iframe1" src="Home.html" height="500" width="1100" tyle="border:none;"></iframe>
+  </article>
+
+<footer>Copyright &copy; Jake Skiba</footer>
+
+</div>
+
+	</style>
+	<script>
+		var bgcolorvar = ["#ff0000","#ff4000","#ff8000","#ffbf00","#ffff00","#bfff00","#80ff00","#40ff00","#00ff00","#00ff40","#00ff80","#00ffbf","#00ffff","#00bfff","#0080ff","#0040ff","#0000ff","#4000ff","#8000ff","#bf00ff","#ff00ff","#ff00bf","#ff0080","#ff0040"];
+		var BGColorPoint = 0;
+		var BColorPointButton = 1;
+		var bgcolorlength = bgcolorvar.length;
+		var autoSwitchT = 0;
+		var NCWait;
+		var writevalue;
+		var answer1 = "";
+		var answer2 = "";
+		var speed = "";
+	
+		function start() {
+			//window.alert("welcome to jake's taco website")
+		}
+		
+			var button = document.createElement("button");
+			button.innerHTML = "Do Something";
+
+			// 2. Append somewhere
+			var body = document.getElementsByTagName("body")[0];
+			body.appendChild(button);
+
+			// 3. Add event handler
+			button.addEventListener ("click", function() {
+			alert("did something");
+			});
+			
+		function nextColor() {
+			if (BColorPointButton == bgcolorlength){
+			BColorPointButton = 0;
+			}
+			console.log(BColorPointButton - 1)
+			BColorPointButton = BColorPointButton + 1
+			ButtonColor.style.background = (bgcolorvar[BColorPointButton])
+			Button2Color.style.background = (bgcolorvar[BColorPointButton])
+			BGColorPoint = BGColorPoint + 1;
+			document.body.style.backgroundColor = (bgcolorvar[BGColorPoint - 1]);
+			//document.getElementById("textColor").style.color = (bgcolorvar[BGColorPoint - 1 + (bgcolorlength/2)]);
+			//text color change^
+			//console.log(bgcolorvar[BGColorPoint - 1]);
+					
+			if (BGColorPoint == bgcolorlength) { 
+				BGColorPoint = 0;
+			}
+		}
+			
+			function seizureClicked() {
+				var x = document.getElementById("frm2");
+				speed = x.elements[0].value;
+				
+				if (autoSwitchT == 0) {
+					autoSwitchT = 1;
+					NCWait = setInterval(nextColor, speed);
+				}
+				else {
+					autoSwitchT = 0
+					clearInterval(NCWait) 
+				}
+			}
+			
+			function redirect() {
+				window.location.href = "https://www.youtube.com/watch?v=xCjuFMxYKyw"
+				//we are number one earrape
+			}
+			
+			function processQuote() {
+				var x = document.getElementById("frm3");
+				quote = x.elements[0].value;
+				name = x.elements[1].value;
+				writeTextFile("C:/Users/2000006546/Desktop/website20stuff/taco20website/quotes.txt", quote, name)
+			}
+			
+			function writeTextFile(filepath, output, output2) {
+				var txtFile = (filepath);
+				console.log(filepath)
+				console.log(output)
+				console.log(output2)
+
+			}
+			
+			function setURL(url){
+				document.getElementById('iframe1').src = url;
+			}
+	</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			h1 {
+				text-align: center;
+			}
+
+			p {
+				text-align: center;
+			}
+		</style>
+		<title>Jake's code</title>
+	</head>
+	<div class="container">
+		<article>
+		<body style="text-align:center;" >
+			<button onclick="GetQuess()" type="button">Click for answer</button><br>
+			<button onclick="toggleRepeat()" type="button">Toggle gen</button><br>
+			<p id="Pr1" >nothing</p>
+			<p id="Pr2" >nothing</p>
+			
+			</article>
+		</div>
+	<script>
+		var Quess = 0;
+		var QuessTrans = "";
+		var hold = "";
+		var i = 0;
+		var autoSwitchT = 0;
+		
+		function toggleRepeat() {
+				if (autoSwitchT == 0) {
+					autoSwitchT = 1;
+					NCWait = setInterval(GetQuess, 1);
+				}
+				else {
+					autoSwitchT = 0
+					clearInterval(NCWait) 
+				}
+		}
+		
+		function GetQuess() {
+			i = i + 1
+			Quess = getRndInteger(0, 4);
+			if (Quess == 0) {QuessTrans = "A";}
+			else if (Quess == 1) {QuessTrans = "B";}
+			else if (Quess == 2) {QuessTrans = "C";}
+			else if (Quess == 3) {QuessTrans = "D";}
+			hold = hold + " " + i + ":" + QuessTrans
+			document.getElementById("Pr1").innerHTML = QuessTrans;
+			document.getElementById("Pr2").innerHTML = hold;
+		}
+	
+		function getRndInteger(min, max) {
+			return Math.floor(Math.random() * (max - min) ) + min;
+		}
+
+	</script>
+</html>

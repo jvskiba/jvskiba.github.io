@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			h1 {
+				text-align: center;
+			}
+
+			p {
+				text-align: center;
+			}
+		</style>
+		<title>Jake's code</title>
+	</head>
+	<div class="container">
+		<article>
+		<body style="text-align:center;">
+			<h1 style="color:green;">Counter</h1>
+			<form id="frm1">
+			Input value of students:<br>
+				<input type="num" size="10" name="Stu" value="1"><br>
+			</form>
+			<button onclick="processQuote()" type="button">Add</button>			
+			<p id="P1" font="30" >Nothing inputted</p>
+			</article>
+		</div>
+	<script>
+		var Stuleft = 0;
+		var Stu = 0;
+		
+		
+		function processQuote() {
+			var x = document.getElementById("frm1");
+			Stu = x.elements[0].value;
+			Stu = Stu * 1
+			Stuleft = Stuleft + Stu
+			document.getElementById("P1").innerHTML = Stuleft;
+		}
+		
+	
+
+	</script>
+</html>

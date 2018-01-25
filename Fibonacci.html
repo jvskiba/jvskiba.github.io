@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			h1 {
+				text-align: center;
+			}
+
+			p {
+				text-align: center;
+			}
+		</style>
+	</head>
+		<body style="text-align:center;" onload="start()" >
+			<h1>Fibonacci sequence</h1>
+			<form id="frm1">
+				Speed<br>
+				<input type="text" maxlength="4" size="2" name="num" value="1"><br>
+			</form>
+			<button onclick="buttonClicked()" type="button">Start/stop</button>
+			<p id="P1"></p>
+		</body>
+	<script>
+		var numarray = [0, 1];
+		var i = 1;
+		var I = 0;
+		var Timer;
+		var fullstring = "";
+		
+		function start() {
+			fullstring = fullstring + " : " + numarray[0];
+			fullstring = fullstring + " : " + numarray[1];	
+		}
+	
+		function buttonClicked() {
+			if (I == 0) {
+				I = 1;
+				Timer = setInterval(StartFib, 10);
+				console.log("started")
+			}
+			else {
+				I = 0;
+				clearInterval(Timer);
+				console.log("stopped")
+			}
+		}
+	
+		function ProcessQuote() {
+			var x = document.getElementById("frm1");
+			//num2 = x.elements[0].value;
+			//console.log(num2)
+		}
+	
+		function StartFib() {
+			i = i + 1
+			numarray[i] = numarray[i-1] + numarray[i-2]
+			display();
+		}
+		
+		function display() {
+			fullstring = fullstring + " : " + numarray[i];
+			document.getElementById("P1").innerHTML = fullstring;
+		}
+	</script>
+</html>

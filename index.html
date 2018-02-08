@@ -2,6 +2,7 @@
 
 <html>
 	<head>
+		<title>Dr.Math</title>
 		<style>
 			h1 {
 				text-align: center;
@@ -88,7 +89,7 @@
 		//               [0, 50, .5, .5]
 		//	  amount owned^   ^price to buy                                                                                                  Length till next stu^
 		var GameStat = [[0],[0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50],
-		[0, 10, 0, 100, 500],[0, 1000, 25, 200], [0, 100000, 250000, 1, 60, true], [0, 250000, 150, 250]];
+		[0, 10, 0, 100, 500],[0, 10000, 25, 200], [0, 100000, 250000, 1, 60, true], [0, 250000, 150, 250]];
 		var numsWithCommas = ["","","","","","","","","",""]
 		var ButtonInfoArray = [
 		["Click to earn $0.5 instantly.","", ""],
@@ -112,7 +113,7 @@
 		var TimerVal = 0;
 		var TimeOpen = 0;
 		var BuyMultiplyer = 1;
-		var priceIncreasePercent = 1.05;
+		var priceIncreasePercent = 1.03;
 
 		
 		function start() {
@@ -149,8 +150,8 @@
 		
 		function UpdateScreen() {
 			for (var i = 0; i < GameStat.length; i++) {
-				numsWithCommas[i] = addCommas(GameStat[i][0])
 				GameStat[i][0] = Math.round(100*GameStat[i][0])/100
+				numsWithCommas[i] = addCommas(GameStat[i][0])
 			}
 			document.getElementById("0").innerHTML = numsWithCommas[0];
 			document.getElementById("1").innerHTML = numsWithCommas[1];

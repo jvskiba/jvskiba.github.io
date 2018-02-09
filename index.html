@@ -27,7 +27,7 @@
 	<div id="container">
 		<div style="width: 50%; float:left">	
 			<div style="width: 50%; float: right;">
-				<h1>Dr.Math</h1>
+				<h1>Dr. Math</h1>
 				<p id="butInfoBox"></p>
 				<p id="parInfoBox"></p>
 				<p id="ErrorBox"></p>
@@ -89,7 +89,7 @@
 		//               [0, 50, .5, .5]
 		//	  amount owned^   ^price to buy                                                                                                  Length till next stu^
 		var GameStat = [[0],[0],[0, 25 , 0, 1],[0, 50, .5, .5],[0, 70, 3], [0, 1000, 10, 50],
-		[0, 10, 0, 100, 500],[0, 10000, 25, 200], [0, 100000, 250000, 1, 60, true], [0, 250000, 150, 250]];
+		[0, 10, 0, 100, 500],[0, 10000, 25, 200], [0, 100000, 250000, 1, 60, 1], [0, 250000, 150, 250]];
 		var numsWithCommas = ["","","","","","","","","",""]
 		var ButtonInfoArray = [
 		["Click to earn $0.5 instantly.","", ""],
@@ -257,11 +257,11 @@
 				if (GameStat[1][0] >= GameStat[9][1]) {
 					GameStat[1][0] -= GameStat[9][1]
 					waitTime = GameStat[8][4] / GameStat[8][0] * 1000;
-					if (GameStat[8][5] == true) {
+					if (GameStat[8][5] == 1) {
 						console.log("Engineer")
-						GameStat[8][5] = false
+						GameStat[8][5] = 0
 						GameStat[9][0] += 1; 
-						setTimeout(function(){GameStat[8][5] = true;}, waitTime);
+						setTimeout(function(){GameStat[8][5] = 1;}, waitTime);
 					}
 				}
 			}
@@ -288,10 +288,11 @@
 		}
 		
 		function Export() {
+			var gameCopy = GameStat;
 			SaveValue = "";
-			for (var i = 0; i < GameStat.length; i++) {
-				for (var j = 0; j < GameStat[i].length; j++) {
-					SaveValue += GameStat[i][j] + ":"
+			for (var i = 0; i < gameCopy.length; i++) {
+				for (var j = 0; j < gameCopy[i].length; j++) { 
+					SaveValue += numToText(gameCopy[i][j], 2) + ":"
 				}
 			}
 			var temp = prompt("Please copy the following text:", SaveValue);
@@ -304,11 +305,39 @@
 			var I = 0
 			for (var i = 0; i < GameStat.length; i++) {
 				for (var j = 0; j < GameStat[i].length; j++) {
-					GameStat[i][j] = saveArray[I]
+					GameStat[i][j] = numToText(saveArray[I], -2)
 					I++
 				}
 			}
 		}
 		
+		function numToText(str, amount){
+			var alphaLookUp = [["a",0],["b",1],["c",2],["d",3],["e",4],["f",5],["g",6],["h",7],["i",8],["j",9]]
+			var str = str.toString();
+			var ArrayBroke = str.split("");
+			var newArrayBroke = ArrayBroke
+			var output = "";
+			if (amount < 0) {
+				for (var f = 0; f < ArrayBroke.length; f++) {
+					for (var F = 0; F < alphaLookUp.length; F++) {if (ArrayBroke[f] == alphaLookUp[F][0]) {newArrayBroke[f] = alphaLookUp[F][1]}}
+					//newArrayBroke[f] -= amount;
+					//if (newArrayBroke[f] < 0) {newArrayBroke[f] + 9}
+				}
+				output = newArrayBroke;
+			}
+			if (amount > 0) {
+				for (var f = 0; f < ArrayBroke.length; f++) {
+					if (ArrayBroke[f] > 9) {ArrayBroke[f] - 9}
+					for (var F = 0; F < alphaLookUp.length; F++) {
+						if (ArrayBroke[f] == alphaLookUp[F][1]) {
+							newArrayBroke[f] = alphaLookUp[F][0]
+							output += newArrayBroke[f];
+						}
+					}
+				}
+				console.log("hi")
+			}
+			return output;
+		}
 	</script>
 </html>

@@ -1,0 +1,128 @@
+/* Initial Setup */
+body {
+    margin: 0px;
+    background-color: rgb(254, 255, 207);
+}
+p {
+    margin: 0px 0px 10px 0px;
+}
+/* Nav and Footer */
+nav {
+    background-color: rgba(250, 56, 56, 0.811);
+    padding: 10px;
+    margin: 0 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+nav p {
+    font-size: large;
+    margin-right: 10px;
+}
+footer {
+    background-color: rgba(250, 56, 56, 0.811);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.footerElement {
+    margin: 0 10px 0 10px
+}
+/* Splash Page */
+section.splash {
+    background-color: rgba(252, 168, 168, 0.44);
+    display: flex;
+    flex-direction: row;
+}
+section.splash h1 {
+    font-family: "Trirong", serif;
+    color: black;
+    font-size: xx-large;
+    margin: 0 0 5px 0;
+}
+section.splash > img {
+    border: 5px solid rgb(129, 0, 0);
+    border-radius: 5px;
+    margin-right: 10px;
+    margin: 10px;
+}
+section.splash p {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+}
+p.address {
+    color: rgb(41, 41, 41);
+}
+/* Sections */
+hr {
+    border-style: none;
+    border-top: 3px solid rgb(28, 28, 28);
+    width: 90%;
+    margin: 0 auto 15px;
+}
+section.main {
+    background-color: rgb(254, 255, 207);
+    font-size: large;
+    padding: 0 0 20px 20px;
+}
+section.main > h2 {
+    font-family: "Baskervville SC", serif;
+    color: black;
+    margin: 0 0 5px 0;
+    text-decoration: underline;
+}
+section.education > p {
+    font-size: large;
+    margin: 0 0 0 30px;
+}
+section.main > ul {
+    list-style-type: circle;
+    margin: 0 0 0 10px;
+}
+section.main > dl {
+    display: grid;
+	grid-template: auto / 350px 1fr;
+    margin: 0 0 0 30px;
+}
+image {
+    width: 200px;
+}
+a {
+    text-decoration: none;
+    color: blue;
+}
+a:visited {
+    color: purple;
+}
+a:hover {
+    color: rgb(45, 140, 108);
+}
+/* Project Cards*/
+.three-col {
+    display: grid;
+    grid-template: auto / 1fr 1fr 1fr;
+}
+div.proj-card {
+    background-color: rgba(254, 167, 167, 0.414);
+    border: 2px solid black;
+    padding: 5px;
+    margin: 10px 10px 10px 0px;
+}
+div.proj-card > img {
+    width: 200px;
+}
+/* Contact Page */
+form.one-col {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+input {
+    width: 200px;
+}
+textarea {
+    width: 300px;
+}
+.contactnav {
+    margin-left: 20px;
+}
